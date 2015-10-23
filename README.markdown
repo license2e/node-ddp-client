@@ -20,12 +20,12 @@ One can authenticate using plain-text logins as follows:
 
 ```js
 // logging in with e-mail
-ddpclient.call("login", [
+ddpclient.send("login", [
   { user : { email : "user@domain.com" }, password : "password" }
 ], function (err, result) { ... });
 
 // logging in with username
-ddpclient.call("login", [
+ddpclient.send("login", [
   { user : { username : "username" }, password : "password" }
 ], function (err, result) { ... });
 ```
@@ -82,7 +82,7 @@ ddpclient.connect(function(error, wasReconnect) {
     /*
      * Call a Meteor Method
      */
-    ddpclient.call(
+    ddpclient.send(
       'deletePosts',             // name of Meteor Method being called
       ['foo', 'bar'],            // parameters to send to Meteor Method
       function (err, result) {   // callback which returns the method call results
@@ -103,7 +103,7 @@ ddpclient.connect(function(error, wasReconnect) {
   var Random = require("ddp-random"),
       random = Random.createWithSeeds("randomSeed");  // seed an id generator
 
-  ddpclient.callWithRandomSeed(
+  ddpclient.sendWithRandomSeed(
     'createPost',              // name of Meteor Method being called
     [{ _id : random.id(),      // generate the id on the client
       body : "asdf" }],

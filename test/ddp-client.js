@@ -29,7 +29,7 @@ describe("Connect to remote server", function() {
 
     assert(wsConstructor.calledOnce);
     assert(wsConstructor.calledWithNew());
-    assert(wsConstructor.call);
+    assert(wsConstructor.send);
     assert.deepEqual(wsConstructor.args, [['ws://localhost:3000/websocket', null, {}]]);
   });
 
@@ -161,7 +161,7 @@ describe('Automatic reconnection', function() {
     ddpclient._send = Function.prototype;
 
     ddpclient.connect();
-    ddpclient.call();
+    ddpclient.send();
 
     assert("_test" in ddpclient._pendingMethods)
   });
@@ -172,7 +172,7 @@ describe('Automatic reconnection', function() {
     ddpclient._send = Function.prototype;
 
     ddpclient.connect();
-    ddpclient.call();
+    ddpclient.send();
 
     assert("_test" in ddpclient._pendingMethods)
 
@@ -186,7 +186,7 @@ describe('Automatic reconnection', function() {
     ddpclient._send = Function.prototype;
 
     ddpclient.connect();
-    ddpclient.call();
+    ddpclient.send();
 
     assert("_test" in ddpclient._pendingMethods)
 
